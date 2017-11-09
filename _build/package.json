@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "dependencies": {
+    "requirejs": "2.*",
+    "jquery": "3.*",
+    "font-awesome": "4.*",
+    "bootstrap": "4.0.0-beta.2",
+    "popper.js": "^1.12.3"
+  },
+  "devDependencies": {
+    "gulp-chmod": "2.*",
+    "gulp-clean-css": "3.*",
+    "gulp-rename": "1.*",
+    "gulp-sass": "3.*",
+    "gulp-uglify": "2.*"
+  }
+}
