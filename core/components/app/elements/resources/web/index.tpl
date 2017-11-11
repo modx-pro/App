@@ -9,6 +9,11 @@
 </div>
 
 <div class="container">
+    {'@FILE snippets/hello.php' | snippet}
+    <hr>
+</div>
+
+<div class="container">
     <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-4">
