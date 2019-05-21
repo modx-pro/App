@@ -10,11 +10,11 @@ php ~/www/Extras/App/_build/build.php
 ```
 *path on your site may differs*
 
-* It will make all necessary actions including installing of npm dependencies. 
+* It will make all necessary actions including installing of npm dependencies.
 
 * For update assets use
 ```
-gulp watch --gulpfile ~/www/Extras/App/_build/gulpfile.js
+cd  ~/www/Extras/App/_build/ && npm run build
 ```
 
 And you can develop your new site.

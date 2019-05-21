@@ -107,12 +107,10 @@ class AppPackage
             $this->modx->log(modX::LOG_LEVEL_INFO, 'Trying to install or update nodejs dependencies');
             $output = [
                 shell_exec('cd ' . $this->config['build'] . ' && npm config set scripts-prepend-node-path true && npm install'),
-                shell_exec('cd ' . $this->config['build'] . ' && npm link gulp'),
-                shell_exec('cd ' . $this->config['build'] . ' && gulp copy'),
             ];
             $this->modx->log(xPDO::LOG_LEVEL_INFO, implode("\n", array_map('trim', $output)));
         }
-        $output = shell_exec('cd ' . $this->config['build'] . ' && gulp js css 2>&1');
+        $output = shell_exec('cd ' . $this->config['build'] . ' && npm run build 2>&1');
         $this->modx->log(xPDO::LOG_LEVEL_INFO, 'Compile scripts and styles ' . trim($output));
     }
 

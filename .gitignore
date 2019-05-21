@@ -1,2 +1,9 @@
 .idea
 config.core.php
+_build/node_modules
+_build/package-lock.json
+assets/components/app/css
+assets/components/app/fonts
+assets/components/app/images
+assets/components/app/js
+assets/components/app/manifest.json

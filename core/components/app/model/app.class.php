@@ -19,10 +19,12 @@ class App
     {
         $this->modx =& $modx;
         $corePath = MODX_CORE_PATH . 'components/app/';
+        $assetsPath = MODX_ASSETS_PATH . 'components/app/';
         $assetsUrl = MODX_ASSETS_URL . 'components/app/';
 
         $this->config = array_merge([
             'corePath' => $corePath,
+            'assetsPath' => $assetsPath,
             'modelPath' => $corePath . 'model/',
             'processorsPath' => $corePath . 'processors/',
 
@@ -89,9 +91,6 @@ class App
                 ]);
                 $fenom->addAccessorSmart('en', 'en', Fenom::ACCESSOR_PROPERTY);
                 $fenom->en = $this->modx->getOption('cultureKey') == 'en';
-
-                $fenom->addAccessorSmart('assets_version', 'assets_version', Fenom::ACCESSOR_PROPERTY);
-                $fenom->assets_version = $this::assets_version;
                 break;
 
             case 'OnHandleRequest':
@@ -131,13 +130,19 @@ class App
                 }
                 */
                 break;
-            case 'OnLoadWebDocument':
-                break;
-            case 'OnPageNotFound':
-                break;
-            case 'OnWebPagePrerender':
-                // Compress output html for Google
-                $this->modx->resource->_output = preg_replace('#\s+#', ' ', $this->modx->resource->_output);
+
+            case 'OnBeforeRegisterClientScripts':
+                $manifest = $this->config['assetsPath'] . 'manifest.json';
+                if (file_exists($manifest)) {
+                    $files = json_decode(file_get_contents($manifest), true);
+                    foreach ($files as $file) {
+                        if (strpos($file, '.css')) {
+                            $this->modx->regClientCSS($file);
+                        } elseif (strpos($file, '.js')) {
+                            $this->modx->regClientScript($file);
+                        }
+                    }
+                }
                 break;
         }
     }
