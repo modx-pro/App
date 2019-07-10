@@ -8,8 +8,6 @@ class App
     public $pdoTools;
     public $config = [];
 
-    const assets_version = '1.00';
-
 
     /**
      * @param modX $modx
