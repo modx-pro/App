@@ -1,4 +1,4 @@
-## Quick start
+## Quick start for installation
 
 * Install MODX Revolution
 
